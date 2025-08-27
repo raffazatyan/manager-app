@@ -1,6 +1,6 @@
 # Manager Locations Test App
 
-A Manager Locations Test App project created in flutter using MobX.
+A Manager Locations App project created in flutter using MobX.
 
 ## Getting Started
 
