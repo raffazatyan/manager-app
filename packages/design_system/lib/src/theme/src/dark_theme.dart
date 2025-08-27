@@ -6,6 +6,7 @@ import 'text_styles.dart';
 import 'theme_tailor/custom_theme.dart';
 
 final _customThemeDark = CustomTheme(
+  textMain: AppColors.neutral1000,
   backgroundSurface: AppColors.grey900,
   backgroundSurfaceTransparent: const Color.fromRGBO(19, 16, 50, 0.92),
   backgroundPrimaryDefault: AppColors.purple150,
@@ -85,15 +86,19 @@ final _customThemeDark = CustomTheme(
   backgroundAccentMerinoDarker: AppColors.merino60,
   backgroundAccentNeutralLighter: AppColors.grey800,
   backgroundAccentNeutralLight: AppColors.grey850,
+  backgroundLightBlue: AppColors.blue900,
+  backgroundCustomGreen: AppColors.green900,
+  backgroundCustomPink: AppColors.red900,
   backgroundAccentNeutralDark: AppColors.neutral40,
   backgroundAccentNeutralDarker: AppColors.neutral20,
   backgroundAccentBlueLighter: AppColors.blue700,
   backgroundAccentBlue: AppColors.blue600,
   backgroundAccentBlueDarker: AppColors.blue40,
   textPrimary: AppColors.purple150,
+  textCustomGrey: AppColors.grey1100,
   textPrimaryDark: AppColors.purple80,
   textPrimaryDarker: AppColors.purple40,
-  textSecondary: AppColors.orange200,
+  textSecondary: AppColors.grey1000,
   textSecondaryDarker: AppColors.orange80,
   textNeutralDarker: AppColors.neutral60,
   textNeutral: AppColors.neutral100,
@@ -182,6 +187,7 @@ final _customThemeDark = CustomTheme(
   headerH3: TextStyles.headerH3,
   headerH4: TextStyles.headerH4,
   headerH5: TextStyles.headerH5,
+  headlineMedium: TextStyles.headlineMedium,
   subheaderS1Bold: TextStyles.subheaderS1Bold,
   subheaderS1Medium: TextStyles.subheaderS1Medium,
   subheaderS2Bold: TextStyles.subheaderS2Bold,
@@ -243,6 +249,9 @@ final _customThemeDark = CustomTheme(
   labelUnderlineSMedium: TextStyles.labelUnderlineSMedium,
   labelUnderlineSRegular: TextStyles.labelUnderlineSRegular,
   listingBold: TextStyles.listingBold,
+  headlineRegular: TextStyles.headlineRegular,
+  headlineSmall: TextStyles.headlineSmall,
+  regularSmall: TextStyles.regularSmall,
 );
 
 final darkTheme = ThemeData.dark(useMaterial3: false).copyWith(

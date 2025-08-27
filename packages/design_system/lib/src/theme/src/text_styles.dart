@@ -409,7 +409,7 @@ class TextStyles {
     decoration: TextDecoration.none,
     fontStyle: FontStyle.normal,
     fontFamily: FontFamily.inter,
-    fontWeight: FontWeight.w400,
+    fontWeight: FontWeight.w300,
     height: 20 / 14,
     letterSpacing: 0,
   );
@@ -658,5 +658,41 @@ class TextStyles {
     fontSize: 14,
     fontFamily: FontFamily.inter,
     height: 1.428,
+  );
+
+  static const TextStyle listingMedium = TextStyle(
+    fontSize: 14,
+    fontFamily: FontFamily.inter,
+    height: 1.428,
+  );
+
+  static const TextStyle headlineMedium = TextStyle(
+    fontSize: 20,
+    fontFamily: FontFamily.inter,
+    fontStyle: FontStyle.normal,
+    fontWeight: FontWeight.w300,
+    height: 24 / 20,
+  );
+  static const TextStyle headlineRegular = TextStyle(
+    fontSize: 18,
+    fontFamily: FontFamily.inter,
+    fontStyle: FontStyle.normal,
+    fontWeight: FontWeight.w300,
+    height: 24 / 18,
+  );
+
+  static const TextStyle headlineSmall = TextStyle(
+    fontSize: 15,
+    fontFamily: FontFamily.inter,
+    fontStyle: FontStyle.normal,
+    fontWeight: FontWeight.w300,
+    height: 20 / 15,
+  );
+  static const TextStyle regularSmall = TextStyle(
+    fontSize: 12,
+    fontFamily: FontFamily.inter,
+    fontStyle: FontStyle.normal,
+    fontWeight: FontWeight.w300,
+    height: 16 / 12,
   );
 }

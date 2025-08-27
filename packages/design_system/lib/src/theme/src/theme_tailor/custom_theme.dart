@@ -7,6 +7,8 @@ part 'custom_theme.tailor.dart';
 class CustomTheme extends ThemeExtension<CustomTheme>
     with _$CustomThemeTailorMixin {
   CustomTheme({
+    required this.textMain,
+    required this.headlineMedium,
     required this.backgroundSurface,
     required this.backgroundSurfaceTransparent,
     required this.backgroundPrimaryDefault,
@@ -46,6 +48,8 @@ class CustomTheme extends ThemeExtension<CustomTheme>
     required this.backgroundDangerDefault,
     required this.backgroundDangerHover,
     required this.backgroundNeutralPressedDarker,
+    required this.backgroundCustomGreen,
+    required this.backgroundCustomPink,
     required this.backgroundDangerPressed,
     required this.backgroundDangerDefaultDarker,
     required this.backgroundDangerHoverDarker,
@@ -86,12 +90,14 @@ class CustomTheme extends ThemeExtension<CustomTheme>
     required this.backgroundAccentMerinoDarker,
     required this.backgroundAccentNeutralLighter,
     required this.backgroundAccentNeutralLight,
+    required this.backgroundLightBlue,
     required this.backgroundAccentNeutralDark,
     required this.backgroundAccentNeutralDarker,
     required this.backgroundAccentBlueLighter,
     required this.backgroundAccentBlue,
     required this.backgroundAccentBlueDarker,
     required this.textPrimary,
+    required this.textCustomGrey,
     required this.textPrimaryDark,
     required this.textPrimaryDarker,
     required this.textSecondary,
@@ -205,6 +211,7 @@ class CustomTheme extends ThemeExtension<CustomTheme>
     required this.paragraphMRegular,
     required this.paragraphSBold,
     required this.paragraphSSemibold,
+
     required this.paragraphSMedium,
     required this.paragraphSRegular,
     required this.labelXXLBold,
@@ -244,6 +251,9 @@ class CustomTheme extends ThemeExtension<CustomTheme>
     required this.labelUnderlineSMedium,
     required this.labelUnderlineSRegular,
     required this.listingBold,
+    required this.headlineRegular,
+    required this.headlineSmall,
+    required this.regularSmall,
   });
 
   @override
@@ -405,7 +415,13 @@ class CustomTheme extends ThemeExtension<CustomTheme>
   @override
   Color backgroundAccentNeutralLight;
   @override
+  Color backgroundLightBlue;
+  @override
   Color backgroundAccentNeutralDark;
+  @override
+  Color backgroundCustomGreen;
+  @override
+  Color backgroundCustomPink;
   @override
   Color backgroundAccentNeutralDarker;
   @override
@@ -416,6 +432,8 @@ class CustomTheme extends ThemeExtension<CustomTheme>
   Color backgroundAccentBlueDarker;
   @override
   Color textPrimary;
+  @override
+  Color textCustomGrey;
   @override
   Color textPrimaryDark;
   @override
@@ -589,6 +607,8 @@ class CustomTheme extends ThemeExtension<CustomTheme>
   @override
   Color overlayDefault;
   @override
+  Color textMain;
+  @override
   TextStyle headerH1;
   @override
   TextStyle headerH2;
@@ -701,6 +721,8 @@ class CustomTheme extends ThemeExtension<CustomTheme>
   @override
   TextStyle labelUnderlineXLRegular;
   @override
+  TextStyle headlineRegular;
+  @override
   TextStyle labelUnderlineLSemibold;
   @override
   TextStyle labelUnderlineLMedium;
@@ -720,4 +742,10 @@ class CustomTheme extends ThemeExtension<CustomTheme>
   TextStyle labelUnderlineSRegular;
   @override
   TextStyle listingBold;
+  @override
+  TextStyle headlineMedium;
+  @override
+  TextStyle headlineSmall;
+  @override
+  TextStyle regularSmall;
 }

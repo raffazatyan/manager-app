@@ -7,19 +7,23 @@ import 'app_router.gr.dart';
 
 export 'app_router.gr.dart';
 
-@AutoRouterConfig(
-  replaceInRouteName: 'Page,Route',
-)
+@AutoRouterConfig(replaceInRouteName: 'Page,Route')
 class AppRouter extends RootStackRouter {
   @override
   final List<AutoRoute> routes = [
-    AutoRoute(
-      initial: true,
-      path: '/',
-      page: SplashRoute.page,
-      guards: const [AuthGuard()],
-    ),
+    AutoRoute(path: '/', page: SplashRoute.page, guards: const [AuthGuard()]),
     AutoRoute(page: LoginRoute.page),
+    AutoRoute(
+      path: '/dashboard-manager',
+      page: ManagerDashboardRoute.page,
+      initial: true,
+      meta: const {'description': 'Manager dashboard page'},
+    ),
+    AutoRoute(
+      path: '/locations',
+      page: LocationsRoute.page,
+      meta: const {'description': 'Locations page'},
+    ),
   ];
 }
 
@@ -29,8 +33,6 @@ class EmptyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ColoredBox(
-      color: context.backgroundSurface,
-    );
+    return ColoredBox(color: context.backgroundSurface);
   }
 }

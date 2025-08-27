@@ -16,33 +16,6 @@ mixin _$AuthStore on AuthStoreBase, Store {
     () => super.isLoggedIn,
     name: 'AuthStoreBase.isLoggedIn',
   )).value;
-  Computed<bool>? _$isUserLoadingComputed;
-
-  @override
-  bool get isUserLoading => (_$isUserLoadingComputed ??= Computed<bool>(
-    () => super.isUserLoading,
-    name: 'AuthStoreBase.isUserLoading',
-  )).value;
-
-  late final _$_currentUserAtom = Atom(
-    name: 'AuthStoreBase._currentUser',
-    context: context,
-  );
-
-  UserResponseDto? get currentUser {
-    _$_currentUserAtom.reportRead();
-    return super._currentUser;
-  }
-
-  @override
-  UserResponseDto? get _currentUser => currentUser;
-
-  @override
-  set _currentUser(UserResponseDto? value) {
-    _$_currentUserAtom.reportWrite(value, super._currentUser, () {
-      super._currentUser = value;
-    });
-  }
 
   late final _$_accessTokenAtom = Atom(
     name: 'AuthStoreBase._accessToken',
@@ -62,38 +35,6 @@ mixin _$AuthStore on AuthStoreBase, Store {
     _$_accessTokenAtom.reportWrite(value, super._accessToken, () {
       super._accessToken = value;
     });
-  }
-
-  late final _$_isUserLoadedAtom = Atom(
-    name: 'AuthStoreBase._isUserLoaded',
-    context: context,
-  );
-
-  bool get isUserLoaded {
-    _$_isUserLoadedAtom.reportRead();
-    return super._isUserLoaded;
-  }
-
-  @override
-  bool get _isUserLoaded => isUserLoaded;
-
-  @override
-  set _isUserLoaded(bool value) {
-    _$_isUserLoadedAtom.reportWrite(value, super._isUserLoaded, () {
-      super._isUserLoaded = value;
-    });
-  }
-
-  late final _$getCurrentUserAsyncAction = AsyncAction(
-    'AuthStoreBase.getCurrentUser',
-    context: context,
-  );
-
-  @override
-  Future<void> getCurrentUser({bool updateUserLoaded = false}) {
-    return _$getCurrentUserAsyncAction.run(
-      () => super.getCurrentUser(updateUserLoaded: updateUserLoaded),
-    );
   }
 
   late final _$getAccessTokenAsyncAction = AsyncAction(
@@ -119,8 +60,7 @@ mixin _$AuthStore on AuthStoreBase, Store {
   @override
   String toString() {
     return '''
-isLoggedIn: ${isLoggedIn},
-isUserLoading: ${isUserLoading}
+isLoggedIn: ${isLoggedIn}
     ''';
   }
 }

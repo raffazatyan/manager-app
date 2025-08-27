@@ -13,14 +13,15 @@ import 'interceptors/auth_interceptor.dart';
 class DioService {
   final FlavorService _flavorService;
   late final AuthProvider authProvider = AuthProvider(dio);
+  late final ManagerDashboardApiProvider managerDashboardProvider =
+      ManagerDashboardApiProvider(dio);
+  late final LocationsApiProvider locationsProvider = LocationsApiProvider(dio);
 
   // Add other repositories
   late final Dio dio;
   late final Dio uploadImageDio;
 
-  DioService(
-    this._flavorService,
-  ) {
+  DioService(this._flavorService) {
     initDio();
   }
 
@@ -35,20 +36,18 @@ class DioService {
       ..headers[HttpHeaders.contentTypeHeader] = 'audio/mpeg';
 
     dio = Dio(options)
-      ..interceptors.addAll(
-        <Interceptor>[
-          ApiInterceptor(),
-          AuthInterceptor(),
-          // CacheInterceptor(),
-          LogInterceptor(
-            requestBody: true,
-            responseBody: true,
-            logPrint: (res) {
-              log(res.toString(), name: 'BE');
-            },
-          ),
-        ],
-      );
+      ..interceptors.addAll(<Interceptor>[
+        ApiInterceptor(),
+        AuthInterceptor(),
+        // CacheInterceptor(),
+        LogInterceptor(
+          requestBody: true,
+          responseBody: true,
+          logPrint: (res) {
+            log(res.toString(), name: 'BE');
+          },
+        ),
+      ]);
 
     uploadImageDio = Dio(uploadDioOptions)
       ..interceptors.addAll([

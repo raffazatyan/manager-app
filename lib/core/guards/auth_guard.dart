@@ -21,6 +21,6 @@ class AuthGuard extends AutoRouteGuard {
       return resolver.redirect<void>(const LoginRoute());
     }
 
-    return resolver.next();
+    return resolver.redirectUntil<void>(const ManagerDashboardRoute());
   }
 }

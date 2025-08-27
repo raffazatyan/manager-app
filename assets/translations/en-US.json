@@ -70,5 +70,12 @@
         "expirationInfo": "It will expire shortly, so enter it soon.",
         "resendAgainInSeconds": "You can resend code in {second} sec.",
         "resendCode": "Resend verification code"
+    },
+    "managerDashboardPage": {
+        "title": "Manager Dashboard",
+        "summary": "Summary"
+    },
+    "locationsPage": {
+        "title": "Locations"
     }
 }

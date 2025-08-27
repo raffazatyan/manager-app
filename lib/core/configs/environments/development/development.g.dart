@@ -7,7 +7,7 @@ part of 'development.dart';
 // **************************************************************************
 
 const _$developmentEnvJsonLiteral = {
-  'apiUrl': 'https://example.api.url',
+  'apiUrl': 'https://goldfish-app-3lf7u.ondigitalocean.app/api/v1/',
   'socketUrl': 'https://example.websocket.url',
   'env': 'DEVELOPMENT',
   'production': false,

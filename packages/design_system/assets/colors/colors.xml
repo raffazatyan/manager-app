@@ -45,6 +45,8 @@
     <color name="neutral-800">#32304D</color>
     <color name="neutral-850">#232040</color>
     <color name="neutral-900">#131032</color>
+    <color name="neutral-1000">#0B0B0B</color>
+    
 
     <!-- Grey Colors -->
     <color name="grey-700">#464655</color>
@@ -52,6 +54,8 @@
     <color name="grey-800">#2A2A36</color>
     <color name="grey-850">#191A24</color>
     <color name="grey-900">#121217</color>
+    <color name="grey-1000">#606060</color>
+    <color name="grey-1100">#808080</color>
 
     <!-- Aqua Colors -->
     <color name="aqua-40">#EAFDFA</color>
@@ -92,6 +96,7 @@
     <color name="red-600">#D21E2D</color>
     <color name="red-700">#A50D13</color>
     <color name="red-850">#440306</color>
+    <color name="red-900">#FEE2E2</color>
 
     <!-- Green Colors -->
     <color name="green-40">#E8FAF6</color>
@@ -102,6 +107,7 @@
     <color name="green-600">#009E7D</color>
     <color name="green-700">#008065</color>
     <color name="green-800">#003328</color>
+    <color name="green-900">#86E71F</color>
 
     <!-- Blue Colors -->
     <color name="blue-40">#EAF7FF</color>
@@ -112,5 +118,6 @@
     <color name="blue-600">#038CE2</color>
     <color name="blue-700">#0074CC</color>
     <color name="blue-800">#002647</color>
+    <color name="blue-900">#E9FAFF</color>
 
 </resources>

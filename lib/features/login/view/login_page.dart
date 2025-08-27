@@ -1,19 +1,10 @@
-import 'dart:io';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:design_system/design_system.dart';
-
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
 
-import '../../../core/constants/social_provider_enum.dart';
-import '../../../gen/locale_keys.g.dart';
 import '../../../injectable.dart';
-import '../../../shared/widgets/loadings/overlay_loading.dart';
 import '../mobx/login_page_state.dart';
 
 @RoutePage()
@@ -24,178 +15,87 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Provider<LoginPageState>(
       create: (_) => getIt<LoginPageState>(),
-      child: const _LoginPageContent(),
+      child: const _Content(),
     );
   }
 }
 
-class _LoginPageContent extends StatelessWidget {
-  const _LoginPageContent();
+class _Content extends StatelessWidget {
+  const _Content();
 
   @override
   Widget build(BuildContext context) {
     final state = context.read<LoginPageState>();
-
-    return Scaffold(
-      body: Stack(
-        children: [
-          Column(
-            children: [
-              Gap(context.topPadding),
-              _LoginButtons(
-                onSocialLoginTap: state.onSocialLoginTap,
-                onEmailTap: state.onEmailTap,
-              ),
-              const Spacer(),
-              _TermsAndPrivacyPolicy(
-                openExternalUrl: state.openExternalUrl,
-              ),
-              Gap(context.bottomSecurePadding),
-            ],
-          ),
-          const _LoginLoading(),
-        ],
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const _LoginHeader(),
+            const Gap(20),
+            _InputTextField(label: 'Email', onChanged: state.setEmail),
+            const Gap(20),
+            _InputTextField(label: 'Password', onChanged: state.setPassword),
+            const Gap(20),
+            const _LoginButton(),
+          ],
+        ),
       ),
     );
   }
 }
 
-class _LoginLoading extends StatelessWidget {
-  const _LoginLoading();
+class _LoginHeader extends StatelessWidget {
+  const _LoginHeader();
+
+  @override
+  Widget build(BuildContext context) {
+    return Text('Login', style: context.headerH1.setColor(context.textMain));
+  }
+}
+
+class _InputTextField extends StatelessWidget {
+  const _InputTextField({required this.label, required this.onChanged});
+
+  final String label;
+  final Function(String) onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      onChanged: onChanged,
+      decoration: InputDecoration(
+        labelText: label,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(13),
+          borderSide: BorderSide(color: context.textMain),
+        ),
+      ),
+    ).paddingHorizontal(20);
+  }
+}
+
+class _LoginButton extends StatelessWidget {
+  const _LoginButton();
 
   @override
   Widget build(BuildContext context) {
     final state = context.read<LoginPageState>();
-
-    return Observer(
-      builder: (_) => state.socialLoadingState.isLoading
-          ? const OverlayEntryLoading()
-          : const SizedBox(),
-    );
-  }
-}
-
-class _LoginButtons extends StatelessWidget {
-  const _LoginButtons({
-    required this.onSocialLoginTap,
-    required this.onEmailTap,
-  });
-
-  final Function(SocialProviderEnum) onSocialLoginTap;
-  final VoidCallback onEmailTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const Gap(kSpacing32px),
-        const _ExtrasFreePlan(),
-        const Gap(kSpacing16px),
-        _SocialButton(
-          onSocialLoginTap: onSocialLoginTap,
-          socialProvider: SocialProviderEnum.GOOGLE,
+    return InkWell(
+      splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
+      onTap: state.login,
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          color: context.backgroundAccentNeutralDark,
+          borderRadius: BorderRadius.circular(32),
         ),
-        const Gap(kSpacing12px),
-        if (Platform.isIOS) ...[
-          _SocialButton(
-            onSocialLoginTap: onSocialLoginTap,
-            socialProvider: SocialProviderEnum.APPLE,
-          ),
-        ],
-        const Gap(kSpacing24px),
-      ],
-    ).paddingHorizontal();
-  }
-}
-
-class _ExtrasFreePlan extends StatelessWidget {
-  const _ExtrasFreePlan();
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      LocaleKeys.loginPage_extrasFreePlan.tr(),
-      style: context.labelXLMedium.setColor(context.textNeutralLighter),
-    );
-  }
-}
-
-class _SocialButton extends StatelessWidget {
-  const _SocialButton({
-    required this.onSocialLoginTap,
-    required this.socialProvider,
-  });
-
-  final ValueChanged<SocialProviderEnum> onSocialLoginTap;
-  final SocialProviderEnum socialProvider;
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () => onSocialLoginTap(socialProvider),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          socialProvider.icon.image(),
-          const Gap(kSpacing6px),
-          Text(
-            LocaleKeys.loginPage_continueWith.tr(
-              namedArgs: {
-                'provider': socialProvider.name.toSentenceCase,
-              },
-            ),
-          ),
-        ],
+        child: const Icon(
+          Icons.arrow_forward_ios,
+          color: Colors.white,
+        ).paddingAll(12),
       ),
-    );
-  }
-}
-
-class _TermsAndPrivacyPolicy extends StatelessWidget {
-  const _TermsAndPrivacyPolicy({
-    required this.openExternalUrl,
-  });
-
-  final Function(String) openExternalUrl;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          LocaleKeys.loginPage_termsIntroText.tr(),
-          style: context.paragraphMRegular.setColor(context.textNeutral),
-        ),
-        RichText(
-          textAlign: TextAlign.center,
-          text: TextSpan(
-            style: context.paragraphMRegular.setColor(context.textNeutral),
-            children: [
-              TextSpan(
-                text: LocaleKeys.loginPage_termsOfUse.tr(),
-                style: const TextStyle(
-                  decoration: TextDecoration.underline,
-                ),
-                recognizer: TapGestureRecognizer()
-                  ..onTap = () => openExternalUrl('https://example.com'),
-              ),
-              TextSpan(
-                text: LocaleKeys.loginPage_and.tr(),
-                recognizer: TapGestureRecognizer()
-                  ..onTap = () => openExternalUrl('https://example.com'),
-              ),
-              TextSpan(
-                text: LocaleKeys.loginPage_privacyPolicy.tr(),
-                style: const TextStyle(
-                  decoration: TextDecoration.underline,
-                ),
-                recognizer: TapGestureRecognizer()
-                  ..onTap = () => openExternalUrl('https://example.com'),
-              ),
-            ],
-          ),
-        ),
-      ],
     );
   }
 }

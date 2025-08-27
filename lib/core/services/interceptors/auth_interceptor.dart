@@ -18,13 +18,17 @@ class AuthInterceptor extends Interceptor {
 
     options.headers[HttpHeaders.contentTypeHeader] = 'application/json';
 
+    options.headers['Authorization'] = token;
+
     if (options.data is FormData) {
       options.headers[HttpHeaders.contentTypeHeader] = 'multipart/form-data';
     }
 
     if (token?.isNotEmpty == true) {
-      options.headers
-          .putIfAbsent(HttpHeaders.authorizationHeader, () => 'bearer $token');
+      options.headers.putIfAbsent(
+        HttpHeaders.authorizationHeader,
+        () => 'bearer $token',
+      );
     }
 
     return handler.next(options);

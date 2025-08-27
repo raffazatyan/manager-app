@@ -8,23 +8,16 @@ import 'models/models.dart';
 part 'auth_api_provider.g.dart';
 
 class _Paths {
-  static const getUserProfile = '/user/me';
-  static const googleLogin = '/auth/google/continue';
-  static const appleLogin = '/auth/apple/continue';
+  static const getUser = 'users/login';
 
   _Paths._();
 }
 
 @RestApi()
+// ignore: one_member_abstracts
 abstract class AuthProvider {
   factory AuthProvider(Dio dio) = _AuthProvider;
 
-  @GET(_Paths.getUserProfile)
-  Future<UserResponseDto> getUserProfile();
-
-  @POST(_Paths.googleLogin)
-  Future<AuthResponseDto> googleLogin(@Body() SocialLoginDto socialLoginDto);
-
-  @POST(_Paths.appleLogin)
-  Future<AuthResponseDto> appleLogin(@Body() SocialLoginDto socialLoginDto);
+  @POST(_Paths.getUser)
+  Future<AuthResponseDto> getUser(@Body() AuthRequestDto request);
 }
